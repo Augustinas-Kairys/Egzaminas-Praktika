@@ -13,5 +13,6 @@ Pajungimas kliento : **cd client, npm run dev**
 
 * Prisijungimai **Admin** -- El.paštas : admin@example.com , Slaptažodis : admin123
 * Prisijungimai **User** -- El.paštas : user@example.com , Slaptažodis : useris123
-* 
+
+* Env example pakeisti i .env ir pasirinkti duomenu baze
  
