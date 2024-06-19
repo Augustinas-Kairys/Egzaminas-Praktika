@@ -1,0 +1,52 @@
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Category {
+  id          Int      @id @default(autoincrement())
+  name        String   
+  posts       Post[]   @relation(name: "categories")
+}
+
+model User {
+  id          String  @id @default(uuid())
+  username    String  @unique
+  email       String  @unique
+  password    String
+  admin       Boolean @default(false)
+  blocked     Boolean @default(false)
+  authoredPosts Post[] @relation(name: "author") // Changed relation name to `authoredPosts`
+  likes       Like[] 
+}
+
+model Post {
+  id             Int       @id @default(autoincrement())
+  title          String
+  content        String
+  createdAt      DateTime  @default(now())
+  author         User      @relation(name: "author", fields: [authorId], references: [id])
+  authorId       String
+  photoUrl       String?
+  authorUsername String
+  isApproved     Boolean   @default(false)
+  isBlocked      Boolean   @default(false)
+  categories     Category[] @relation(name: "categories")
+  startingTime   DateTime?
+  likes          Like[]    
+  likesCount     Int       @default(0) // Optional: to maintain a count of likes
+}
+
+model Like {
+  userId String
+  postId Int
+
+  user User @relation(fields: [userId], references: [id])
+  post Post @relation(fields: [postId], references: [id])
+
+  @@id([userId, postId]) 
+}

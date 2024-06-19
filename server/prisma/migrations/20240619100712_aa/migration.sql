@@ -1,0 +1,3 @@
+-- AlterTable
+ALTER TABLE `post` ADD COLUMN `likes` INTEGER NOT NULL DEFAULT 0,
+    ADD COLUMN `startingTime` DATETIME(3) NULL;
