@@ -63,6 +63,7 @@ const Dashboard: React.FC = () => {
           {isAdmin && (
             <div>
               <p>You are an admin.</p>
+              <Link to="/Admin" className="creating btn btn-primary"> Admin Panel</Link>
             </div>
           )}
           {isBlocked && (
@@ -74,6 +75,7 @@ const Dashboard: React.FC = () => {
       ) : (
         <div>
           <p>You are not logged in.</p>
+          <Link to="/Login" className="creating btn btn-primary"> Login</Link>
         </div>
       )}
     </div>
